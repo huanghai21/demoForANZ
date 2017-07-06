@@ -1,0 +1,26 @@
+.filter {
+	width: 15%;
+	float: left;
+}
+
+.table-list {
+	width: 85%;
+	float: right;
+}
+.table-list table {
+	width: 100%;
+}
+.table-list table tr {
+	border: 1px solid #ddd;
+}
+.table-list table thead tr {
+	background: #ddd;
+	white-space: nowrap;
+}
+.table-list table thead tr th,
+.table-list table tbody tr td{
+	word-break: break-all;
+	height: 30px;
+	line-height: 30px;
+	padding: 5px 10px 5px 10px;
+}

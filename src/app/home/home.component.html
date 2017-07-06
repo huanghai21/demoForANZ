@@ -1,0 +1,35 @@
+<h2>Home</h2>
+<div class="filter">
+	<div ngbDropdown class="d-inline-block">
+	  <button class="btn btn-outline-primary" id="logLevelDropdown" ngbDropdownToggle>
+	  	<span>Log Level</span>
+	  </button>
+	  <div class="dropdown-menu" aria-labelledby="logLevelDropdown">
+	    <button *ngFor="let level of logLevels" class="dropdown-item" (click)="changeLogLevel(level)">
+	    	<span>{{level}}</span>
+	    </button>
+	  </div>
+	</div>
+</div>
+<div class="table-list">
+	<table>
+		<thead>
+			<tr>
+				<th *ngFor="let header of headers">{{header}}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let item of logItems">
+				<td>{{item.TimeStamp}}</td>
+				<td>{{item.LogMarker}}</td>
+				<td>{{item.CurrentThread}}</td>
+				<td>{{item.Logger}}</td>
+				<td>{{item.LogLevel}}</td>
+				<td>{{item.LogMessage}}</td>
+			</tr>
+			<tr *ngIf="logItems.length === 0" style="text-align: center;">
+				<td colspan="6">No Data</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

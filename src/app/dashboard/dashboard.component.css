@@ -1,0 +1,13 @@
+.pie {
+	width: 50%;
+	float: left;
+}
+
+.line {
+	width: 50%;
+	float: right;
+}
+
+#pieChart, #lineChart {
+	height: 500px;
+}

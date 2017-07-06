@@ -1,0 +1,43 @@
+<div class="login">
+	<div class="logo"></div>
+	<div class="content">
+		<div class="login-title"><span>Log In</span></div>
+		<div class="login-form form-horizontal">
+			<div class="form-group">
+				<label class="control-label col-sm-3">
+					<span>User ID</span>
+				</label>
+				<div class="col-sm-9">
+					<input type="text" [(ngModel)]="userId" class="form-control" 
+							(keydown)='errorTipForUserId=""' 
+							(keyup)='checkEnter($event)' 
+							placeholder="Please input user id here">
+					<div *ngIf="errorTipForUserId" class="error-tip">
+						<span>{{errorTipForUserId}}</span>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3">
+					<span>Password</span>
+				</label>
+				<div class="col-sm-9">
+					<input type="password" [(ngModel)]="password" class="form-control" 
+							(keydown)='errorTipForPassword=""' 
+							(keyup)='checkEnter($event)' 
+							placeholder="Please input password here">
+					<div *ngIf="errorTipForPassword" class="error-tip">
+						<span>{{errorTipForPassword}}</span>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3">
+					<button class="login-button form-control" (click)="login()"><span>Log In</span></button>
+				</label>
+				<div class="col-sm-9">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

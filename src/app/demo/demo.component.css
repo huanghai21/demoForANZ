@@ -1,0 +1,42 @@
+.header {
+	background: #31b0d5;
+	height: 50px;
+	color: #fff;
+	font-weight: bold;
+}
+
+.nav-content {
+	float: left;
+	margin-left: 5%;
+}
+.logout {
+	float: right;
+	margin-right: 5%;
+}
+
+.nav-content ul, .logout ul{
+	display: inline-block;
+	height: 40px;
+	line-height: 40px;
+	font-size: 16px;
+	padding: 5px;
+}
+.nav-content ul li{
+	float: left;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-right: 1px solid;
+}
+.nav-content ul li:last-child{
+	border-right: 0px;
+}
+
+.clear {
+	clear: both;
+}
+.main-content {
+	margin-left: 5%;
+	margin-right: 5%;
+	padding: 15px;
+	padding-bottom: 30px;
+}
