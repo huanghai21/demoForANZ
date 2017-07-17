@@ -1,0 +1,195 @@
+<div>
+	<input type="text" name="src" style="width:300px;" placeholder="Input number here" />
+	<button>Sort</button>
+</div>
+<div style="padding-top: 10px;">
+	<input type="text" name="dst" style="width:300px;" placeholder="Sort result" />
+</div>
+
+<script type="text/javascript">
+	function mergeSort(src){
+		if(src.length === 1){
+			return src;
+		}else{
+			var left = src.slice(0, Math.floor(src.length/2));
+			var right = src.slice(Math.floor(src.length/2));
+			// return merge(mergeSort(left), mergeSort(right));
+			return newMerge(mergeSort(left), mergeSort(right));
+		}
+	}
+
+	function merge(a, b){ 
+		var result = [];
+		var leftIndex = 0;
+		var leftLength = a.length;
+		var rightIndex = 0;
+		var rightLength = b.length;
+		while(1){
+			if(leftIndex<leftLength && rightIndex < rightLength){
+				if(a[leftIndex] < b[rightIndex]){
+					result.push(a[leftIndex++]);
+				}else{
+					result.push(b[rightIndex++]);
+				}
+			}else{
+				if(leftIndex < rightIndex){
+					result = result.concat(a.slice(leftIndex));
+				}else{
+					result = result.concat(b.slice(rightIndex));
+				}
+				break;
+			}
+		}
+		return result;
+	}
+
+	function newMerge(a, b){
+		var result = [];
+		while(a[0] && b[0]){
+			a[0]< b[0] ? result.push(a.shift()) : result.push(b.shift());
+			// if(a[0]< b[0]){
+			// 	result.push(a.shift());
+			// }else{
+			// 	result.push(b.shift());
+			// }
+		}
+		return a.length > 0 ? result.concat(a) : result.concat(b);
+		// if(a.length > 0){
+		// 	result = result.concat(a);
+		// }else{
+		// 	result = result.concat(b);
+		// }
+		// return result;
+	}
+
+	document.querySelector('button').addEventListener('click', function(){
+		var srcArray = document.querySelector('input[name=src]').value.split(',');
+		var dstArray = mergeSort(srcArray.map(convert2Num));
+		document.querySelector('input[name=dst]').value = convert2Str(dstArray);
+	});
+
+	function convert2Num(a){
+		return Number(a);
+	}
+
+	function convert2Str(a){
+		return a.join(',');
+	}
+
+
+
+	/*****************Tree Demo*********************/
+	var treeNodes = [
+			{
+				id: 1,
+				name: '1',
+				children: [
+					{
+						id: 11,
+						name: '11',
+						children: [
+							{
+								id: 111,
+								name: '111',
+								children: []
+							},
+							{
+								id: 112,
+								name: '112'
+							}
+						]
+					},
+					{
+						id: 12,
+						name: '12',
+						children: []
+					}
+				],
+				users: []
+			},
+			{
+				id: 2,
+				name: '2',
+				children: [
+					{
+						id: 22,
+						name: '22',
+						children: []
+					}
+				]
+			}
+		];
+
+	var parseTreeJson = function(treeNodes){
+      if (!treeNodes || !treeNodes.length) return;
+
+       for (var i = 0, len = treeNodes.length; i < len; i++) {
+
+            var childs = treeNodes[i].children;
+
+            console.log(treeNodes[i].id);
+
+            if(childs && childs.length > 0){
+                 parseTreeJson(childs);
+            }
+       }
+    };
+
+    console.log('------------- 递归实现 ------------------');
+    parseTreeJson(treeNodes);
+
+	var iterator1 = function(treeNodes){
+		if (!treeNodes || !treeNodes.length) return;
+
+		var queue = [];// 广度遍历用队列，先进先出
+
+		//先将第一层节点放入栈
+		for (var i = 0, len = treeNodes.length; i < len; i++) {
+		    queue.push(treeNodes[i]);
+		}
+
+		var item;
+
+		while (queue.length) {
+		    item = queue.shift();
+
+		    console.log(item.id);
+
+		    //如果该节点有子节点，继续添加进入栈底
+		    if (item.children && item.children.length) {
+		        queue = queue.concat(item.children);
+		    }
+		}
+    };
+
+    console.log('------------- 非递归广度优先实现 ------------------');
+    iterator1(treeNodes);
+
+	var iterator2 = function(treeNodes){
+		if (!treeNodes || !treeNodes.length) return;
+
+		var stack = [];// 深度遍历用堆栈，先进后出
+
+		//先将第一层节点放入栈
+		for (var i = 0, len = treeNodes.length; i < len; i++) {
+		    stack.push(treeNodes[i]);
+		}
+
+		var item;
+
+		while (stack.length) {
+		    item = stack.shift();
+
+		    console.log(item.id);
+
+		    //如果该节点有子节点，继续添加进入栈底
+		    if (item.children && item.children.length) {
+		        stack = item.children.concat(stack);
+		    }
+		}
+    };
+
+    console.log('------------- 非递归深度优先实现 ------------------');
+    iterator2(treeNodes);
+
+</script>
